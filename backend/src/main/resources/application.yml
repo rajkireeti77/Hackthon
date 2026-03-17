@@ -1,0 +1,73 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: phishguard-ai-backend
+  datasource:
+    url: ${JDBC_URL:jdbc:h2:mem:phishguard_ai;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${JDBC_USER:sa}
+    password: ${JDBC_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    open-in-view: false
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+  security:
+    disable-auth: ${DISABLE_AUTH:true}
+  url-model:
+    weights-path: ${URL_MODEL_WEIGHTS_PATH:url-model-weights.json}
+  text-model:
+    weights-path: ${TEXT_MODEL_WEIGHTS_PATH:text-model-weights.json}
+  file-model:
+    weights-path: ${FILE_MODEL_WEIGHTS_PATH:file-model-weights.json}
+  firebase:
+    project-id: ${FIREBASE_PROJECT_ID:}
+    service-account-path: ${FIREBASE_SERVICE_ACCOUNT_PATH:}
+  gemini:
+    api-key: ${GEMINI_API_KEY:}
+    model: ${GEMINI_MODEL:gemini-1.5-flash}
+    base-url: ${GEMINI_BASE_URL:https://generativelanguage.googleapis.com}
+  local-llm:
+    enabled: ${LOCAL_LLM_ENABLED:false}
+    base-url: ${LOCAL_LLM_BASE_URL:http://localhost:8001}
+    analyze-path: ${LOCAL_LLM_ANALYZE_PATH:/analyze}
+    timeout-ms: ${LOCAL_LLM_TIMEOUT_MS:60000}
+  sandbox-scanner:
+    enabled: ${SANDBOX_SCANNER_ENABLED:false}
+    base-url: ${SANDBOX_SCANNER_BASE_URL:http://localhost:8002}
+    analyze-path: ${SANDBOX_SCANNER_ANALYZE_PATH:/analyze}
+  safe-browsing:
+    api-key: ${SAFE_BROWSING_API_KEY:}
+    base-url: ${SAFE_BROWSING_BASE_URL:https://safebrowsing.googleapis.com}
+    client-id: ${SAFE_BROWSING_CLIENT_ID:phishguard-ai}
+    client-version: ${SAFE_BROWSING_CLIENT_VERSION:0.1.0}
+  incoming:
+    mail:
+      enabled: ${INCOMING_MAIL_ENABLED:false}
+      user-id: ${INCOMING_MAIL_USER_ID:demo}
+      host: ${INCOMING_MAIL_HOST:}
+      port: ${INCOMING_MAIL_PORT:993}
+      protocol: ${INCOMING_MAIL_PROTOCOL:imaps}
+      username: ${INCOMING_MAIL_USERNAME:}
+      password: ${INCOMING_MAIL_PASSWORD:}
+      folder: ${INCOMING_MAIL_FOLDER:INBOX}
+      poll-interval-ms: ${INCOMING_MAIL_POLL_INTERVAL_MS:30000}
+      max-messages-per-poll: ${INCOMING_MAIL_MAX_MESSAGES:10}
+      mark-seen-on-process: ${INCOMING_MAIL_MARK_SEEN:true}
+    windows-notifications:
+      enabled: ${WINDOWS_NOTIFICATIONS_ENABLED:false}
+      user-id: ${WINDOWS_NOTIFICATIONS_USER_ID:demo}
+      db-path: ${WINDOWS_NOTIFICATIONS_DB_PATH:}
+      poll-interval-ms: ${WINDOWS_NOTIFICATIONS_POLL_INTERVAL_MS:5000}
+      allowed-apps: ${WINDOWS_NOTIFICATIONS_ALLOWED_APPS:5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App}
+      ignored-payload-types: ${WINDOWS_NOTIFICATIONS_IGNORED_PAYLOAD_TYPES:badge,tile}
+
+logging:
+  level:
+    root: INFO
+    com.phishguardai.backend: INFO
+

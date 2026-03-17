@@ -1,0 +1,10 @@
+datasets>=2.21
+fastapi>=0.115
+peft>=0.12
+pydantic>=2.8
+safetensors>=0.4
+sentencepiece>=0.2
+torch>=2.4
+transformers>=4.44
+trl>=0.10
+uvicorn>=0.30
