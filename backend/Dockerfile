@@ -13,7 +13,7 @@ RUN apt-get update && \
     apt-get install -y python3 python3-pip python3-pandas python3-sklearn python3-joblib && \
     rm -rf /var/lib/apt/lists/*
 
-COPY ml_scripts /app/ml_scripts
+COPY ml /app/ml
 RUN mkdir -p /app/ml_data
 
 COPY --from=builder /app/target/*.jar app.jar
